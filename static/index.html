@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Локальный Чат</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="login-screen">
+            <h1>💬 Локальный Чат</h1>
+            <p id="subtitle">Войди в общий чат</p>
+            <div class="login-box">
+                <input type="text" id="username-input" placeholder="Введите ваше имя" />
+                <button id="login-btn">Войти в чат</button>
+                <div id="message-area"></div>
+            </div>
+        </div>
+
+        <div id="chat-screen" style="display: none;">
+            <div id="sidebar">
+                <div id="sidebar-header">
+                    <h1>💬</h1>
+                </div>
+                <div id="user-info">
+                    <strong id="current-username"></strong>
+                    <button id="logout-btn">Выйти</button>
+                </div>
+                <h3>👥 В чате (<span id="online-count">0</span>)</h3>
+                <ul id="users-list"></ul>
+                <div class="status" id="ws-status">🔴 Не в сети</div>
+            </div>
+
+            <div id="chat-area">
+                <div id="chat-header">
+                    <span class="chat-title">Общий чат</span>
+                    <span class="online-status" id="chat-online-status"></span>
+                </div>
+                <div id="messages"></div>
+                <div id="input-area">
+                    <label for="file-input" id="file-label">📎</label>
+                    <input type="file" id="file-input" />
+                    <textarea id="message-input" placeholder="Введите сообщение..." rows="1"></textarea>
+                    <button id="emoji-btn">😊</button>
+                    <button id="voice-btn">🎤</button>
+                    <button id="voice-cancel-btn" style="display:none;">✕</button>
+                    <button id="send-btn">➤</button>
+                </div>
+                <div id="emoji-picker"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/websocket.js"></script>
+    <script src="/static/js/ui.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
