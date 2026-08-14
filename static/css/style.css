@@ -73,6 +73,7 @@ body {
 .login-box button:hover { background: #4da3e8; }
 .login-box .error { color: #e06b6b; margin-top: 10px; font-size: 14px; }
 
+/* ===== ЧАТ ===== */
 #chat-screen {
     display: none;
     width: 60vw;
@@ -109,6 +110,10 @@ body {
     font-size: 20px;
     color: #64b5f6;
     margin: 0;
+}
+
+#sidebar-close {
+    display: none;
 }
 
 #user-info {
@@ -202,6 +207,10 @@ body {
     border-bottom: 1px solid #242f3d;
     margin-bottom: 12px;
     min-height: 44px;
+}
+
+#chat-header .menu-btn {
+    display: none;
 }
 
 #chat-header .chat-title {
@@ -485,94 +494,338 @@ body {
 ::-webkit-scrollbar-thumb { background: #242f3d; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #2b3a4a; }
 
-@media (max-width: 1024px) {
-    #chat-screen {
-        width: 80vw;
-        min-width: auto;
-    }
-    .message {
-        max-width: 90%;
-    }
-}
-
+/* ===== ТЕЛЕФОН (<= 768px) ===== */
 @media (max-width: 768px) {
-    #chat-screen {
-        width: 95vw;
-        min-width: auto;
-        height: 95vh;
-        border-radius: 8px;
+    /* Увеличиваем всё на 10% */
+    body { font-size: 16px; }
+    #chat-area { padding: 14px 18px; }
+    .message { font-size: 15px; padding: 8px 12px; }
+    .message .sender-name { font-size: 13px; }
+    .message .time { font-size: 11px; }
+    #message-input { font-size: 15px; min-height: 38px; padding: 8px 12px; }
+    #voice-btn, #voice-cancel-btn, #send-btn, #emoji-btn { width: 38px; height: 38px; min-width: 38px; min-height: 38px; font-size: 16px; }
+    #file-label { min-height: 38px; min-width: 38px; font-size: 18px; }
+    #input-area { padding: 6px 10px; gap: 6px; }
+    #sidebar { width: 280px; }
+    #sidebar-header h1 { font-size: 22px; }
+    #user-info strong { font-size: 15px; }
+    #user-info button { font-size: 13px; padding: 6px 14px; }
+    #users-list li { font-size: 15px; padding: 10px 14px; }
+    #chat-header .chat-title { font-size: 17px; }
+    #chat-header .menu-btn { font-size: 24px; }
+    .emoji-item { font-size: 24px; padding: 4px 8px; }
+    .voice-message { min-width: 140px; max-width: 220px; padding: 6px 10px; }
+    .voice-play-btn { font-size: 18px; width: 28px; height: 28px; }
+    .voice-waves { height: 20px; gap: 3px; }
+    .voice-waves span { width: 3px; }
+    .voice-duration { font-size: 12px; min-width: 28px; }
+    #emoji-picker { max-width: 95%; max-height: 220px; bottom: 65px; padding: 10px; }
+    #emoji-picker input { font-size: 15px; padding: 8px 12px; }
+    body {
+        padding: 0;
+        align-items: stretch;
     }
-    #sidebar {
-        width: 200px;
-        padding: 12px;
-    }
-    #chat-area {
-        margin-left: 200px;
-        padding: 12px 16px;
-        width: calc(100% - 200px);
-    }
-    .message {
-        max-width: 95%;
-        font-size: 13px;
-    }
-    .message a {
-        font-size: 12px;
-        padding: 4px 10px;
-    }
-    #emoji-picker {
-        max-width: 90%;
-        left: 5%;
-        transform: none;
-    }
-}
 
-@media (max-width: 480px) {
+    #login-screen {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    #login-screen h1 {
+        font-size: 24px;
+    }
+
+    .login-box {
+        max-width: 320px;
+    }
+
+    #chat-screen {
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        min-height: unset;
+        max-width: unset;
+        border-radius: 0;
+        box-shadow: none;
+        display: none;
+        flex-direction: row;
+    }
+
     #sidebar {
-        width: 160px;
-        padding: 8px;
+        width: 260px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 20;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        border-radius: 0;
+        float: none;
     }
-    #chat-area {
-        margin-left: 160px;
-        padding: 8px 10px;
-        width: calc(100% - 160px);
+
+    #sidebar.open {
+        transform: translateX(0);
     }
-    .message {
-        max-width: 98%;
-        font-size: 12px;
-        padding: 6px 10px;
-    }
-    .message a {
-        font-size: 11px;
+
+    #sidebar-close {
+        display: flex !important;
+        background: none;
+        border: none;
+        color: #e1e9f1;
+        font-size: 24px;
+        cursor: pointer;
         padding: 4px 8px;
     }
+
+    #chat-header .menu-btn {
+        display: flex !important;
+        background: none;
+        border: none;
+        color: #64b5f6;
+        font-size: 22px;
+        cursor: pointer;
+        padding: 4px 8px;
+    }
+
+    #chat-area {
+        margin-left: 0;
+        width: 100%;
+        padding: 12px 16px;
+    }
+
+    .message {
+        max-width: 90%;
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .message img, .message video {
+        max-height: 150px;
+    }
+
+    .message a {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
     #input-area {
+        margin: 0 6px 6px 6px;
         padding: 4px 8px;
         gap: 4px;
     }
+
+    #message-input {
+        font-size: 13px;
+        padding: 6px 10px;
+        min-height: 32px;
+    }
+
     #voice-btn, #voice-cancel-btn, #send-btn, #emoji-btn {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
-        min-height: 34px;
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
         font-size: 14px;
     }
+
     #file-label {
-        min-height: 34px;
-        min-width: 34px;
+        min-height: 32px;
+        min-width: 32px;
         font-size: 16px;
+        padding: 4px 6px;
     }
-    #message-input {
-        font-size: 12px;
-        padding: 6px 10px;
-        min-height: 34px;
-    }
+
     #emoji-picker {
         max-width: 95%;
         max-height: 200px;
         bottom: 60px;
+        padding: 8px;
     }
+
     .emoji-item {
-        font-size: 22px !important;
-        padding: 2px 6px !important;
+        font-size: 20px;
+        padding: 2px 5px;
+    }
+
+    .voice-message {
+        min-width: 120px;
+        max-width: 200px;
+        padding: 4px 6px;
+    }
+
+    .voice-play-btn {
+        font-size: 16px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .voice-waves {
+        height: 16px;
+        gap: 2px;
+    }
+
+    .voice-waves span {
+        width: 2px;
+    }
+
+    .voice-duration {
+        font-size: 10px;
+        min-width: 24px;
     }
 }
+
+@media (max-width: 480px) {
+    body { font-size: 15px; }
+    #chat-area { padding: 10px 14px; }
+    .message { font-size: 14px; padding: 6px 10px; }
+    .message .sender-name { font-size: 12px; }
+    .message .time { font-size: 10px; }
+    #message-input { font-size: 14px; min-height: 34px; padding: 6px 10px; }
+    #voice-btn, #voice-cancel-btn, #send-btn, #emoji-btn { width: 34px; height: 34px; min-width: 34px; min-height: 34px; font-size: 15px; }
+    #file-label { min-height: 34px; min-width: 34px; font-size: 17px; }
+    #input-area { padding: 5px 8px; gap: 5px; }
+    #sidebar { width: 240px; padding: 10px; }
+    #sidebar-header h1 { font-size: 19px; }
+    #user-info strong { font-size: 14px; }
+    #user-info button { font-size: 12px; padding: 5px 12px; }
+    #users-list li { font-size: 14px; padding: 8px 12px; }
+    #chat-header .chat-title { font-size: 15px; }
+    #chat-header .menu-btn { font-size: 20px; }
+    .emoji-item { font-size: 22px; padding: 3px 6px; }
+    .voice-message { min-width: 110px; max-width: 180px; padding: 5px 8px; }
+    .voice-play-btn { font-size: 16px; width: 24px; height: 24px; }
+    .voice-waves { height: 18px; gap: 2px; }
+    .voice-waves span { width: 2px; }
+    .voice-duration { font-size: 11px; min-width: 24px; }
+    #emoji-picker { max-height: 180px; bottom: 58px; padding: 8px; }
+    #emoji-picker input { font-size: 14px; padding: 6px 10px; }
+    #sidebar {
+        width: 220px;
+        padding: 8px;
+    }
+
+    #sidebar-header h1 {
+        font-size: 17px;
+    }
+
+    #user-info {
+        padding: 6px 10px;
+        min-height: 40px;
+    }
+
+    #user-info strong {
+        font-size: 12px;
+    }
+
+    #user-info button {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+
+    #users-list li {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    #chat-header {
+        padding: 6px 10px;
+        min-height: 44px;
+    }
+
+    #chat-header .chat-title {
+        font-size: 14px;
+    }
+
+    #chat-header .menu-btn {
+        font-size: 18px;
+    }
+
+    #messages {
+        padding: 6px 8px;
+    }
+
+    .message {
+        max-width: 95%;
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .message .sender-name {
+        font-size: 10px;
+    }
+
+    .message .time {
+        font-size: 8px;
+    }
+
+    #input-area {
+        padding: 4px 6px;
+        gap: 3px;
+        margin: 0 4px 4px 4px;
+    }
+
+    #message-input {
+        font-size: 12px;
+        padding: 4px 8px;
+        min-height: 28px;
+    }
+
+    #voice-btn, #voice-cancel-btn, #send-btn, #emoji-btn {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        min-height: 28px;
+        font-size: 12px;
+    }
+
+    #file-label {
+        min-height: 28px;
+        min-width: 28px;
+        font-size: 14px;
+        padding: 3px 5px;
+    }
+
+    #emoji-picker {
+        max-height: 160px;
+        bottom: 55px;
+        padding: 6px;
+    }
+
+    .emoji-item {
+        font-size: 18px;
+        padding: 2px 4px;
+    }
+
+    .voice-message {
+        min-width: 100px;
+        max-width: 160px;
+        padding: 3px 5px;
+    }
+
+    .voice-play-btn {
+        font-size: 14px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .voice-waves {
+        height: 14px;
+        gap: 1px;
+    }
+
+    .voice-waves span {
+        width: 2px;
+    }
+
+    .voice-duration {
+        font-size: 9px;
+        min-width: 20px;
+    }
+}
+
+
+
+

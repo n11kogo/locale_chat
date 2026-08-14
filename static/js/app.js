@@ -1,4 +1,36 @@
-﻿let currentUser = null;
+﻿
+// ===== САЙДБАР =====
+const sidebar = document.getElementById('sidebar');
+const openSidebarBtn = document.getElementById('open-sidebar');
+const closeSidebarBtn = document.getElementById('sidebar-close');
+
+function openSidebar() {
+    sidebar.classList.add('open');
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('open');
+}
+
+if (openSidebarBtn) {
+    openSidebarBtn.addEventListener('click', openSidebar);
+}
+if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener('click', closeSidebar);
+}
+
+// Закрытие при клике вне сайдбара (только на телефоне)
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (sidebar.classList.contains('open')) {
+            if (!sidebar.contains(e.target) && e.target !== openSidebarBtn) {
+                closeSidebar();
+            }
+        }
+    }
+});
+
+let currentUser = null;
 let currentSessionId = null;
 let mediaRecorder = null;
 let audioChunks = [];
@@ -591,3 +623,4 @@ logoutBtn.addEventListener('click', () => {
     document.getElementById('users-list').innerHTML = '';
     UI.updateWSStatus('disconnected');
 });
+

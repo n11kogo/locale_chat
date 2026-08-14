@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Локальный Чат</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
@@ -18,10 +18,11 @@
             </div>
         </div>
 
-        <div id="chat-screen" style="display: none;">
+        <div id="chat-screen">
             <div id="sidebar">
                 <div id="sidebar-header">
                     <h1>💬</h1>
+                    <button id="sidebar-close">✕</button>
                 </div>
                 <div id="user-info">
                     <strong id="current-username"></strong>
@@ -34,6 +35,7 @@
 
             <div id="chat-area">
                 <div id="chat-header">
+                    <button class="menu-btn" id="open-sidebar">☰</button>
                     <span class="chat-title">Общий чат</span>
                     <span class="online-status" id="chat-online-status"></span>
                 </div>
